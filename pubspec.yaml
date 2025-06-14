@@ -103,7 +103,6 @@ flutter:
     - assets/icons/contacts/linkedin.svg
     - assets/icons/contacts/outlook.svg
     - assets/icons/contacts/telephone.svg
-
     
     - assets/ir_project/index.jpg
     - assets/ir_project/multiplewordquery.jpg
@@ -113,6 +112,18 @@ flutter:
     - assets/ir_project/partialmatch.jpg
     - assets/ir_project/partialmatchResult.jpg
     - assets/ir_project/ranking.jpg
+
+    - assets/festa_project/adminAccManagement1.png
+    - assets/festa_project/adminAccManagement2.png
+    - assets/festa_project/adminPortal.png
+    - assets/festa_project/albumManagement1.png
+    - assets/festa_project/albumManagement2.png
+    - assets/festa_project/albumPage.png
+    - assets/festa_project/index.png
+    - assets/festa_project/searchPage.png
+    - assets/festa_project/searchResults.png
+    - assets/festa_project/singleAlbumManagement.png
+    - assets/festa_project/teamPage.png
 
     - assets/profile.jpg
 

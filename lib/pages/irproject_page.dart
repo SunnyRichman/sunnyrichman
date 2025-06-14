@@ -3,11 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sunnyrichman/models/irproject_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const Color oceanGreen = Color.fromARGB(255, 0, 108, 108);
 const Color cream = Color.fromARGB(255, 255, 255, 201);
 
 int _selectedIndex = 1;
+int? _tappedIndex;
 
 List<IrprojectModel> gallery = IrprojectModel.getGallery();
 List<IrprojectTools> tools = IrprojectTools.getTools();
@@ -26,7 +28,7 @@ class _IRprojectPageState extends State<IRprojectPage> {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Ubuntu'),
       home: Scaffold(
-        appBar: AppBar(flexibleSpace: Center(child: (Text('Xiang Cao Project Exhibition',style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24, color: cream)))), centerTitle: true, backgroundColor: oceanGreen),
+        appBar: AppBar(title: FittedBox(child: (Text('Xiang Cao Project Exhibition', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24, color: cream)))), centerTitle: true, backgroundColor: oceanGreen,),
         drawer: newDrawer(),
         body: Container(
           width: MediaQuery.sizeOf(context).width,
@@ -52,7 +54,6 @@ class _IRprojectPageState extends State<IRprojectPage> {
                     padding: EdgeInsets.zero,
                     child: Center(
                       child: Stack(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               margin: EdgeInsets.zero,
@@ -99,6 +100,76 @@ class _IRprojectPageState extends State<IRprojectPage> {
                       viewportFraction: 0.8,
                     )
                   ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: oceanGreen, width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Column(
+                    children: [
+                      heading(context, 'Project Advisor'),
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        width: MediaQuery.sizeOf(context).width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: List.generate(2, (index) {
+                            // URLs and labels
+                            final List<String> labels = [
+                              'Assistant Professor Dr. Charnyote Pluempitiwiriyawej',
+                              'Associate Professor Dr. Suppawong Tuarob'
+                            ];
+                            final List<String> urls = [
+                              'https://www.ict.mahidol.ac.th/th/people/computer-science-academic-group/charnyote_pluempitiwiriyawej/',
+                              'https://www.ict.mahidol.ac.th/th/people/computer-science-academic-group/suppawong_tuarob/'
+                            ];
+
+                            final isTapped = _tappedIndex == index;
+
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.circle, size: 10, color: oceanGreen),
+                                  const SizedBox(width: 10),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      setState(() => _tappedIndex = index);
+
+                                      await Future.delayed(const Duration(milliseconds: 200));
+
+                                      setState(() => _tappedIndex = null);
+
+                                      openUrl(urls[index]);
+                                    },
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width * 0.75,
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(width: 2, color: isTapped ? cream : oceanGreen),
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: isTapped ? cream : oceanGreen,
+                                      ),
+                                      child: Text(
+                                        labels[index],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: isTapped ? oceanGreen : cream,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        ),
+                      )
+                    ],
+                  )
                 ),
                 SizedBox(height: 30),
                 Container(
@@ -397,4 +468,15 @@ class _IRprojectPageState extends State<IRprojectPage> {
       _selectedIndex = index;
     });
   }
+
+
+
+  Future<void> openUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $uri';
+    }
+  }  
 }
