@@ -6,16 +6,16 @@ class IrprojectGallery {
   IrprojectGallery({required this.label, required this.imgpath});
 
   static List<IrprojectGallery> getGallery(){
-    List<IrprojectGallery> Gallery = [];
-    Gallery.add(IrprojectGallery(label: 'Index', imgpath: 'assets/ir_project/index.jpg'));
-    Gallery.add(IrprojectGallery(label: 'One Word Query', imgpath: 'assets/ir_project/onewordquery.jpg'));
-    Gallery.add(IrprojectGallery(label: 'One Word Query Result', imgpath: 'assets/ir_project/onewordqueryResult.jpg'));
-    Gallery.add(IrprojectGallery(label: 'Multiple Word Query', imgpath: 'assets/ir_project/multiplewordquery.jpg'));
-    Gallery.add(IrprojectGallery(label: 'Multiple Word Query Result', imgpath: 'assets/ir_project/multiplewordqueryResult.jpg'));
-    Gallery.add(IrprojectGallery(label: 'Partial Match', imgpath: 'assets/ir_project/partialmatch.jpg'));
-    Gallery.add(IrprojectGallery(label: 'Partial Match Result', imgpath: 'assets/ir_project/partialmatchResult.jpg'));
-    Gallery.add(IrprojectGallery(label: 'Ranking Result', imgpath: 'assets/ir_project/ranking.jpg'));
-    return Gallery;
+    List<IrprojectGallery> model = [];
+    model.add(IrprojectGallery(label: 'Index', imgpath: 'assets/ir_project/index.jpg'));
+    model.add(IrprojectGallery(label: 'One Word Query', imgpath: 'assets/ir_project/onewordquery.jpg'));
+    model.add(IrprojectGallery(label: 'One Word Query Result', imgpath: 'assets/ir_project/onewordqueryResult.jpg'));
+    model.add(IrprojectGallery(label: 'Multiple Word Query', imgpath: 'assets/ir_project/multiplewordquery.jpg'));
+    model.add(IrprojectGallery(label: 'Multiple Word Query Result', imgpath: 'assets/ir_project/multiplewordqueryResult.jpg'));
+    model.add(IrprojectGallery(label: 'Partial Match', imgpath: 'assets/ir_project/partialmatch.jpg'));
+    model.add(IrprojectGallery(label: 'Partial Match Result', imgpath: 'assets/ir_project/partialmatchResult.jpg'));
+    model.add(IrprojectGallery(label: 'Ranking Result', imgpath: 'assets/ir_project/ranking.jpg'));
+    return model;
   }
 
 }
