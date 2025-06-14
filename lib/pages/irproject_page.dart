@@ -11,7 +11,7 @@ const Color cream = Color.fromARGB(255, 255, 255, 201);
 int _selectedIndex = 1;
 int? _tappedIndex;
 
-List<IrprojectModel> gallery = IrprojectModel.getGallery();
+List<IrprojectGallery> gallery = IrprojectGallery.getGallery();
 List<IrprojectTools> tools = IrprojectTools.getTools();
 
 class IRprojectPage extends StatefulWidget{
