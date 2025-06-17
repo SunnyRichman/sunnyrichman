@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sunnyrichman/models/irproject_model.dart';
+import 'package:sunnyrichman/models/webproject_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const Color oceanGreen = Color.fromARGB(255, 0, 108, 108);
@@ -11,8 +11,8 @@ const Color cream = Color.fromARGB(255, 255, 255, 201);
 int _selectedIndex = 2;
 int? _tappedIndex;
 
-List<IrprojectGallery> gallery = IrprojectGallery.getGallery();
-List<IrprojectTools> tools = IrprojectTools.getTools();
+List<WebprojectGallery> gallery = WebprojectGallery.getGallery();
+List<WebprojectTools> tools = WebprojectTools.getTools();
 
 class FESTAprojectPage extends StatefulWidget{
 
