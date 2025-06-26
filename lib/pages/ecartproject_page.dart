@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sunnyrichman/models/webproject_model.dart';
+import 'package:sunnyrichman/models/ecartproject_model.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 const Color oceanGreen = Color.fromARGB(255, 0, 108, 108);
 const Color cream = Color.fromARGB(255, 255, 255, 201);
 
-int _selectedIndex = 2;
+int _selectedIndex = 3;
 int? _tappedIndex;
 
-List<WebprojectGallery> gallery = WebprojectGallery.getGallery();
-List<WebprojectTools> tools = WebprojectTools.getTools();
+List<EcartprojectGallery> gallery = EcartprojectGallery.getGallery();
 
-class FESTAprojectPage extends StatefulWidget{
+class EcartprojectPage extends StatefulWidget{
 
-  const FESTAprojectPage({super.key});
+  const EcartprojectPage({super.key});
 
   @override
-  State<FESTAprojectPage> createState() => _FESTAprojectPageState();
+  State<EcartprojectPage> createState() => _EcartprojectPageState();
 }
 
-class _FESTAprojectPageState extends State<FESTAprojectPage> {
+class _EcartprojectPageState extends State<EcartprojectPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -116,15 +113,13 @@ class _FESTAprojectPageState extends State<FESTAprojectPage> {
                         width: MediaQuery.sizeOf(context).width,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: List.generate(2, (index) {
+                          children: List.generate(1, (index) {
                             // URLs and labels
                             final List<String> labels = [
-                              'Assistant Professor Dr. Jidapa Kraisangka',
-                              'Dr. Wudhichart Sawangphol'
+                              'Assistant Professor Dr. Ananta Srisuphab'
                             ];
                             final List<String> urls = [
-                              'https://www.ict.mahidol.ac.th/th/people/computer-science-academic-group/jidapa_kraisangka/',
-                              'https://www.ict.mahidol.ac.th/th/people/computer-science-academic-group/wudhichart_sawangphol/'
+                              'https://www.ict.mahidol.ac.th/th/people/computer-science-academic-group/ananta_srisuphab/',
                             ];
 
                             final isTapped = _tappedIndex == index;
@@ -180,37 +175,6 @@ class _FESTAprojectPageState extends State<FESTAprojectPage> {
                   width: MediaQuery.sizeOf(context).width,
                   child: Column(
                     children: [
-                      heading(context, 'Crews'),
-                      Container(
-                        padding: EdgeInsets.all(6),
-                        width: MediaQuery.sizeOf(context).width,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            bulletPoint('Mr. Raweerot Bhasidhchirapiroch (Co-worker, Full-stack developer, Research, Report)'),
-                            SizedBox(height: 10),
-                            bulletPoint('Mr. Shalom Inchoi (Front-End, Database, Report)'),
-                            SizedBox(height: 10),
-                            bulletPoint('Mr. Kongpum Bunkueakarunrak (Database, Report)'),
-                            SizedBox(height: 10),
-                            bulletPoint('Mr. Punnavit	Amatasriprasert (UX/UI, Report)'),
-                            SizedBox(height: 10),
-                            bulletPoint('Mr. Engaugsorn	Augsornthoung (Report)')
-                          ],
-                        )
-                      ),
-                    ],
-                  )
-                ),
-                SizedBox(height: 30),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: oceanGreen, width: 2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Column(
-                    children: [
                       heading(context, 'About This Project'),
                       Container(
                         padding: EdgeInsets.all(6),
@@ -225,69 +189,6 @@ class _FESTAprojectPageState extends State<FESTAprojectPage> {
                             bulletPoint('The information for each album will be based on reliable sources such as Musicstax or Spotify'),
                           ],
                         )
-                      ),
-                    ],
-                  )
-                ),
-                SizedBox(height: 30),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: oceanGreen, width: 2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Column(
-                    children: [
-                      heading(context, 'Tools'),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        width: MediaQuery.sizeOf(context).width,
-                        height: 120, // Add a fixed height to contain horizontal ListView
-                        child: ListView.separated(
-                          itemCount: tools.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              padding: EdgeInsets.all(6),
-                              width: 100,
-                              decoration: BoxDecoration(
-                                color: oceanGreen,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: cream,
-                                    radius: 24,
-                                    child: SvgPicture.asset(tools[index].iconpath, color: oceanGreen),
-                                  ),
-                                  Text(tools[index].label, textAlign: TextAlign.center, style: TextStyle(color: cream, fontWeight: FontWeight.w700)
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) => SizedBox(width: 10),
-                        ),
-                      ),
-                    ],
-                  )
-                ),
-                SizedBox(height: 30),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: oceanGreen, width: 2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Column(
-                    children: [
-                      heading(context, 'APIs Detail'),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        width: MediaQuery.sizeOf(context).width,
-                        child: 
                       ),
                     ],
                   )
@@ -341,7 +242,7 @@ class _FESTAprojectPageState extends State<FESTAprojectPage> {
       onTap: () {
         _onItemTapped(index);
         context.go(path);
-        _onItemTapped(2);
+        _onItemTapped(3);
       },
     );
   }
